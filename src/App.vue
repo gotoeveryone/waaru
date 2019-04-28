@@ -2,8 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link to="/">Home</router-link> |
+      <router-link to="/events/new">Events</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+    <h2>Waaru (ワール)</h2>
     <router-view />
   </div>
 </template>

@@ -1,18 +1,26 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div>
+    <div class="mt-3 mb-5">
+      イベントと参加者を登録して、割り勘の情報を登録しよう。
+    </div>
+    <v-btn class="btn-add" color="blue" to="/events/new" fab
+      >イベントを登録する</v-btn
+    >
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
 export default Vue.extend({
-  name: "home",
-  components: {
-    HelloWorld
-  }
+  name: "home"
 });
 </script>
+
+<style lang="scss" scoped>
+.btn-add {
+  width: 140px;
+  height: 140px;
+  color: #fff;
+}
+</style>
