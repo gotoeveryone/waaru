@@ -1,30 +1,36 @@
 <template>
-  <v-form v-model="valid">
-    <v-container>
-      <v-layout column>
-        <div>イベント追加</div>
-        <v-flex xs12 md4>
-          <v-text-field
-            v-model="eventName"
-            :rules="nameRules"
-            :counter="30"
-            label="イベント名"
-            required
-          ></v-text-field>
-        </v-flex>
-        <template v-for="(member, idx) in members">
-          <member-list
-            :index="idx"
-            :member="member"
-            :key="idx"
-            @remove-item="removeMember"
-          />
-        </template>
-        <add-member-form @add-member="addMember" />
-        <v-btn @click="save" :disabled="!valid">保存</v-btn>
-      </v-layout>
-    </v-container>
-  </v-form>
+  <v-container>
+    <v-layout column>
+      <v-form v-model="valid">
+        <v-flex md12>イベント追加</v-flex>
+        <v-layout row wrap>
+          <v-flex md11>
+            <v-text-field
+              v-model="eventName"
+              :rules="nameRules"
+              :counter="30"
+              label="イベント名"
+              required
+            ></v-text-field>
+          </v-flex>
+          <v-flex md1>
+            <v-btn fab small color="orange" @click="save" :disabled="!valid">
+              <v-icon color="white">fas fa-save</v-icon>
+            </v-btn>
+          </v-flex>
+        </v-layout>
+        <members-table :members="members" @remove-item="removeMember" />
+      </v-form>
+      <v-expansion-panel>
+        <v-expansion-panel-content>
+          <template v-slot:header>
+            <v-flex md12>メンバー追加</v-flex>
+          </template>
+          <add-member-form @add-member="addMember" />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+    </v-layout>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -32,12 +38,12 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import Vue from "vue";
 import AddMemberForm from "@/components/AddMemberForm.vue";
-import MemberList from "@/components/MemberList.vue";
+import MembersTable from "@/components/MembersTable.vue";
 import { Member } from "@/types";
 export default Vue.extend({
   components: {
     AddMemberForm,
-    MemberList
+    MembersTable
   },
   data() {
     return {

@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <v-layout column align-center justify-center>
     <div class="mt-3 mb-5">
       イベントと参加者を登録して、割り勘の情報を登録しよう。
     </div>
     <v-btn class="btn-add" color="blue" to="/events/new" fab
       >イベントを登録する</v-btn
     >
-  </div>
+  </v-layout>
 </template>
 
 <script lang="ts">
