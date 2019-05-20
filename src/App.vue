@@ -21,17 +21,24 @@
       <div class="app-copyright mt-2 mb-2">
         &copy; K2SS All rights reserved.
       </div>
+      <div ref="ad" />
     </v-layout>
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+
 export default Vue.extend({
   computed: {
     iconColor() {
       return "rgb(231, 152, 99)";
     }
+  },
+  mounted() {
+    (this.$refs.ad as HTMLDivElement).innerHTML = (document.querySelector(
+      ".ad-html"
+    ) as HTMLDivElement).innerHTML;
   },
   methods: {
     isHome() {
