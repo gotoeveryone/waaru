@@ -79,13 +79,16 @@ import Vue from "vue";
 import AddMemberForm from "@/components/AddMemberForm.vue";
 import BreadCrumbs from "@/components/TheBreadCrumbs.vue";
 import MembersTable from "@/components/MembersTable.vue";
+import metaUsable from "@/mixins/meta-usable";
 import { EventItem, Member, BreadCrumb } from "@/types";
+
 export default Vue.extend({
   components: {
     AddMemberForm,
     BreadCrumbs,
     MembersTable
   },
+  mixins: [metaUsable],
   data() {
     return {
       valid: false,
@@ -98,7 +101,8 @@ export default Vue.extend({
       members: [] as Member[],
       snackbar: false,
       timeout: 6000,
-      message: ""
+      message: "",
+      firestore: null
     };
   },
   computed: {

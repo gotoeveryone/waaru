@@ -56,12 +56,14 @@
 <script lang="ts">
 import Vue from "vue";
 import BreadCrumbs from "@/components/TheBreadCrumbs.vue";
+import metaUsable from "@/mixins/meta-usable";
 import { BreadCrumb } from "@/types";
 
 export default Vue.extend({
   components: {
     BreadCrumbs
   },
+  mixins: [metaUsable],
   computed: {
     items(): BreadCrumb[] {
       return [

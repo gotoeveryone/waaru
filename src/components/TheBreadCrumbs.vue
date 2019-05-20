@@ -2,8 +2,7 @@
   <v-breadcrumbs
     :items="items"
     divider=">"
-    class="pt-0 pb-2 pl-0 pr-0"
-    justify-center
+    class="justify-center pt-0 pb-2 pl-0 pr-0"
   />
 </template>
 
