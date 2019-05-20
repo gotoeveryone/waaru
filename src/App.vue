@@ -9,8 +9,14 @@
         <router-link to="/about" class="ml-1 mr-1">
           <v-icon :color="iconColor">fas fa-info-circle</v-icon>
         </router-link>
+        <a href="https://k2ss.info/contact" target="_blank" class="ml-1 mr-1">
+          <v-icon :color="iconColor">fas fa-envelope</v-icon>
+        </a>
       </div>
       <router-view />
+      <div class="app-copyright mt-2 mb-2">
+        &copy; K2SS All rights reserved.
+      </div>
     </v-layout>
   </v-app>
 </template>
@@ -35,6 +41,10 @@ export default Vue.extend({
 .app {
   &-title {
     font-size: 30px;
+  }
+
+  &-copyright {
+    font-size: 12px;
   }
 }
 </style>

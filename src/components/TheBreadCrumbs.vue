@@ -3,7 +3,8 @@
     :items="items"
     divider=">"
     class="pt-0 pb-2 pl-0 pr-0"
-  ></v-breadcrumbs>
+    justify-center
+  />
 </template>
 
 <script lang="ts">
