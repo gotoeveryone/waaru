@@ -1,5 +1,3 @@
-export type Prop<T> = () => T;
-
 export interface EventItem {
   name: string;
   remarks: string;
@@ -11,4 +9,10 @@ export interface Member {
   amount: number;
   isPayment: boolean;
   remarks: string;
+}
+
+export interface BreadCrumb {
+  text: string;
+  disabled: boolean;
+  href?: string;
 }

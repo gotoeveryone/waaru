@@ -1,35 +1,35 @@
 <template>
-  <v-app id="app">
+  <v-app id="app" class="app">
     <v-layout column align-center justify-content-start>
-      <div id="nav">
-        <router-link to="/">Home</router-link> |
-        <router-link to="/events/new">Events</router-link> |
-        <router-link to="/about">About</router-link>
+      <h2 class="app-title mt-3 mb-2">Waaru (ワール)</h2>
+      <div class="app-nav mt-1 mb-1 d-flex">
+        <router-link to="/" class="ml-1 mr-1">
+          <v-icon :color="iconColor">fas fa-home</v-icon>
+        </router-link>
+        <router-link to="/about" class="ml-1 mr-1">
+          <v-icon :color="iconColor">fas fa-info-circle</v-icon>
+        </router-link>
       </div>
-      <h2>Waaru (ワール)</h2>
       <router-view />
     </v-layout>
   </v-app>
 </template>
 
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  computed: {
+    iconColor() {
+      return "rgb(231, 152, 99)";
+    }
+  }
+});
+</script>
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+<style lang="scss">
+.app {
+  &-title {
+    font-size: 30px;
+  }
 }
 </style>

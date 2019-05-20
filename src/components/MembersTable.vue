@@ -12,7 +12,7 @@
         v-text="Number(props.item.amount).toLocaleString()"
       />
       <td class="text-xs-left" v-text="props.item.remarks" />
-      <td class="text-xs-center">
+      <td class="text-xs-center pt-1 pb-1">
         <v-btn
           fab
           small
