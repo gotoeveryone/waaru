@@ -8,10 +8,11 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
+import { BreadCrumb } from "@/types";
 export default Vue.extend({
   props: {
     items: {
-      type: Array as PropType<string[]>,
+      type: Array as PropType<BreadCrumb[]>,
       default: () => []
     }
   }

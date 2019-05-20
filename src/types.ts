@@ -15,4 +15,5 @@ export interface BreadCrumb {
   text: string;
   disabled: boolean;
   href?: string;
+  to?: string;
 }

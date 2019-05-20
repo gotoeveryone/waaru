@@ -18,7 +18,7 @@
             </v-flex>
             <v-flex xs2 md1>
               <v-btn fab small color="blue" @click="copy">
-                <v-icon color="white">fas fa-copy</v-icon>
+                <v-icon color="white">fas fa-clipboard</v-icon>
               </v-btn>
             </v-flex>
           </template>
@@ -97,7 +97,7 @@ export default Vue.extend({
         {
           text: "ホーム",
           disabled: false,
-          href: "/"
+          to: "/"
         },
         {
           text: this.title,

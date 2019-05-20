@@ -68,7 +68,7 @@ export default Vue.extend({
         {
           text: "ホーム",
           disabled: false,
-          href: "/"
+          to: "/"
         },
         {
           text: this.title,

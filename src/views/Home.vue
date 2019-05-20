@@ -1,11 +1,15 @@
 <template>
-  <v-layout column align-center justify-center>
-    <div class="mt-3 mb-5">
-      イベントと参加者を登録して、割り勘の情報を登録しよう。
-    </div>
-    <v-btn class="btn-add" color="blue" to="/events/new" fab
-      >イベントを登録する</v-btn
-    >
+  <v-layout row wrap justify-center mt-5>
+    <v-flex md6>
+      <v-btn class="btn-start" color="blue" to="/events/new">
+        <span class="btn-start_text">イベントを<br />登録する</span>
+      </v-btn>
+    </v-flex>
+    <v-flex md6>
+      <v-btn class="btn-start" color="blue" to="/about">
+        <span class="btn-start_text">Waaru (ワール) <br />とは？</span>
+      </v-btn>
+    </v-flex>
   </v-layout>
 </template>
 
@@ -18,9 +22,14 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.btn-add {
+.btn-start {
   width: 140px;
   height: 140px;
-  color: #fff;
+
+  &_text {
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+  }
 }
 </style>

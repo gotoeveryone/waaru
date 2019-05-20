@@ -2,7 +2,7 @@
   <v-app id="app" class="app">
     <v-layout column align-center justify-content-start>
       <h2 class="app-title mt-3 mb-2">Waaru (ワール)</h2>
-      <div class="app-nav mt-1 mb-1 d-flex">
+      <div class="app-nav mt-1 mb-1 d-flex" v-if="!isHome()">
         <router-link to="/" class="ml-1 mr-1">
           <v-icon :color="iconColor">fas fa-home</v-icon>
         </router-link>
@@ -21,6 +21,11 @@ export default Vue.extend({
   computed: {
     iconColor() {
       return "rgb(231, 152, 99)";
+    }
+  },
+  methods: {
+    isHome() {
+      return this.$router.currentRoute.name === "home";
     }
   }
 });
