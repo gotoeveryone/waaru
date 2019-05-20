@@ -3,13 +3,17 @@
     <v-layout column align-center justify-content-start>
       <h2 class="app-title mt-3 mb-2">Waaru (ワール)</h2>
       <div class="app-nav mt-1 mb-1 d-flex" v-if="!isHome()">
-        <router-link to="/" class="ml-1 mr-1">
+        <router-link to="/" class="app-nav_link ml-1 mr-1">
           <v-icon :color="iconColor">fas fa-home</v-icon>
         </router-link>
-        <router-link to="/about" class="ml-1 mr-1">
+        <router-link to="/about" class="app-nav_link ml-1 mr-1">
           <v-icon :color="iconColor">fas fa-info-circle</v-icon>
         </router-link>
-        <a href="https://k2ss.info/contact" target="_blank" class="ml-1 mr-1">
+        <a
+          href="https://k2ss.info/contact"
+          target="_blank"
+          class="app-nav_link ml-1 mr-1"
+        >
           <v-icon :color="iconColor">fas fa-envelope</v-icon>
         </a>
       </div>
@@ -41,6 +45,12 @@ export default Vue.extend({
 .app {
   &-title {
     font-size: 30px;
+  }
+
+  &-nav {
+    &_link {
+      text-decoration: none;
+    }
   }
 
   &-copyright {

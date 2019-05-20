@@ -16,8 +16,8 @@
                 @click="selectUrl"
               />
             </v-flex>
-            <v-flex xs2 md1>
-              <v-btn fab small color="blue" @click="copy">
+            <v-flex xs2 md1 text-xs-center>
+              <v-btn fab small class="mr-0" color="blue" @click="copy">
                 <v-icon color="white">fas fa-clipboard</v-icon>
               </v-btn>
             </v-flex>
@@ -31,8 +31,15 @@
               required
             />
           </v-flex>
-          <v-flex xs2 md1>
-            <v-btn fab small color="orange" @click="save" :disabled="!valid">
+          <v-flex xs2 md1 text-xs-center>
+            <v-btn
+              fab
+              small
+              class="mr-0"
+              color="orange"
+              @click="save"
+              :disabled="!valid"
+            >
               <v-icon color="white">fas fa-save</v-icon>
             </v-btn>
           </v-flex>
@@ -42,7 +49,10 @@
       <v-expansion-panel>
         <v-expansion-panel-content>
           <template v-slot:header>
-            <v-flex md12>メンバー追加</v-flex>
+            <v-flex md12>
+              <v-icon small color="blue" class="mr-2">fas fa-user</v-icon>
+              メンバー追加
+            </v-flex>
           </template>
           <add-member-form @add-member="addMember" />
         </v-expansion-panel-content>

@@ -13,17 +13,19 @@
       />
       <td class="text-xs-left" v-text="props.item.remarks" />
       <td class="text-xs-center pt-1 pb-1">
-        <v-btn
-          fab
-          small
-          :color="getColor(props.item)"
-          @click="switchPayment(props.item)"
-        >
-          <v-icon color="white">fas fa-check</v-icon>
-        </v-btn>
-        <v-btn fab small color="red" @click="remove(props.index)">
-          <v-icon color="white">fas fa-times</v-icon>
-        </v-btn>
+        <div class="members-row_actions">
+          <v-btn
+            fab
+            small
+            :color="getColor(props.item)"
+            @click="switchPayment(props.item)"
+          >
+            <v-icon color="white">fas fa-check</v-icon>
+          </v-btn>
+          <v-btn fab small color="red" @click="remove(props.index)">
+            <v-icon color="white">fas fa-times</v-icon>
+          </v-btn>
+        </div>
       </td>
     </template>
   </v-data-table>
@@ -71,3 +73,13 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.members {
+  &-row {
+    &_actions {
+      min-width: 120px;
+    }
+  }
+}
+</style>

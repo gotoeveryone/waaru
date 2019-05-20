@@ -22,13 +22,13 @@
         <h3>Waaru でできること</h3>
         <ul class="about_cando">
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon color="orange" class="about_cando_icon mr-2"
+            <v-icon small color="orange" class="about_cando_icon mr-2"
               >fas fa-sticky-note</v-icon
             >
             <span class="about_cando_text">イベント情報の登録・更新</span>
           </li>
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon color="blue" class="about_cando_icon mr-2"
+            <v-icon small color="blue" class="about_cando_icon mr-2"
               >fas fa-user</v-icon
             >
             <span class="about_cando_text"
@@ -36,13 +36,13 @@
             >
           </li>
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon color="gray" class="about_cando_icon mr-2"
+            <v-icon small color="gray" class="about_cando_icon mr-2"
               >fas fa-clipboard</v-icon
             >
             <span class="about_cando_text">URLをボタン1つでコピーして共有</span>
           </li>
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon color="green" class="about_cando_icon mr-2"
+            <v-icon small color="green" class="about_cando_icon mr-2"
               >fas fa-check</v-icon
             >
             <span class="about_cando_text">支払済みかをマーク</span>

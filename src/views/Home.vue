@@ -34,6 +34,7 @@ export default Vue.extend({
   height: 140px;
 
   &_text {
+    text-transform: none;
     text-align: center;
     color: #fff;
     font-size: 18px;
