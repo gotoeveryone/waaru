@@ -3,6 +3,7 @@ import Router from "vue-router";
 import About from "./views/About.vue";
 import Home from "./views/Home.vue";
 import EventDetail from "./views/EventDetail.vue";
+import NotFound from "./views/NotFound.vue";
 
 Vue.use(Router);
 
@@ -29,6 +30,11 @@ export default new Router({
       path: "/about",
       name: "about",
       component: About
+    },
+    {
+      path: "*",
+      name: "not-found",
+      component: NotFound
     }
   ]
 });

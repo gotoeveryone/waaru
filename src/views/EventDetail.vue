@@ -126,16 +126,19 @@ export default Vue.extend({
       return `${location.origin}/events/${this.eventId}`;
     }
   },
-  mounted() {
+  async mounted() {
     if (this.$route.params.id) {
       this.eventId = this.$route.params.id;
-      firebase
+      await firebase
         .firestore()
         .collection("events")
         .doc(this.eventId)
         .get()
         .then(doc => {
           const data = doc.data() as EventItem;
+          if (!data) {
+            return this.$router.replace({ name: "not-found" });
+          }
           this.eventName = data.name;
           this.members = data.members;
         });
