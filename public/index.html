@@ -30,6 +30,7 @@
       >
     </noscript>
     <div id="app"></div>
+    <% if (process.env.NODE_ENV === "production") { %>
     <div class="ad-html" style="display: none">
       <!-- 320 x 100 -->
       <ins
@@ -42,6 +43,7 @@
     <script>
       (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
+    <% } %>
     <!-- built files will be auto injected -->
   </body>
 </html>

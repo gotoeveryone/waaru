@@ -31,15 +31,15 @@ import Vue from "vue";
 
 export default Vue.extend({
   computed: {
-    isLocal() {
-      return location.hostname !== "localhost";
+    isProduction() {
+      return process.env.NODE_ENV === "production";
     },
     iconColor() {
       return "rgb(231, 152, 99)";
     }
   },
   mounted() {
-    if (!this.isLocal) {
+    if (this.isProduction) {
       (this.$refs.ad as HTMLDivElement).innerHTML = (document.querySelector(
         ".ad-html"
       ) as HTMLDivElement).innerHTML;
