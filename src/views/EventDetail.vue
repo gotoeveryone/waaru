@@ -164,7 +164,7 @@ export default Vue.extend({
         return firebase
           .firestore()
           .collection("events")
-          .doc(this.$route.params.id)
+          .doc(this.eventId)
           .update({
             name: this.eventName,
             members: this.members

@@ -60,8 +60,8 @@ export default Vue.extend({
     addMember() {
       this.$emit("add-member", {
         name: this.name,
-        amount: this.amount!,
-        remarks: this.remarks,
+        amount: Number(this.amount),
+        remarks: this.remarks || "",
         isPayment: false
       });
       this.clearValues();
