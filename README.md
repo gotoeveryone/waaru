@@ -1,34 +1,44 @@
 # waaru
 
-## Project setup
-```
-yarn install
+## Requirements
+
+- Node.js
+- Yarn
+- Firebase CLI
+
+## Setup
+
+```console
+$ yarn install
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
+### Run
+
+```console
+$ yarn run serve
 ```
 
-### Compiles and minifies for production
-```
-yarn run build
+### Deploy
+
+```console
+$ yarn run build
+$ firebase deploy
 ```
 
 ### Run your tests
-```
-yarn run test
+
+```console
+$ yarn run test
 ```
 
 ### Lints and fixes files
-```
-yarn run lint
+
+```console
+$ yarn run lint
 ```
 
 ### Run your unit tests
-```
-yarn run test:unit
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+```console
+$ yarn run test:unit
+```
