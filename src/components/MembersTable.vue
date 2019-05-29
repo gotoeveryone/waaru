@@ -4,26 +4,25 @@
     :items="members"
     :no-data-text="noDataText"
     :hide-actions="true"
+    class="members"
   >
     <template v-slot:items="props">
       <td class="text-xs-left" v-text="props.item.name" />
-      <td
-        class="text-xs-right"
-        v-text="Number(props.item.amount).toLocaleString()"
-      />
+      <td class="text-xs-right" v-text="getAmount(props.item.plannedAmount)" />
+      <td class="text-xs-right" v-text="getAmount(props.item.amount)" />
       <td class="text-xs-left" v-text="props.item.remarks" />
       <td class="text-xs-center pt-1 pb-1">
         <div class="members-row_actions">
           <v-btn
-            fab
+            icon
             small
             :color="getColor(props.item)"
             @click="switchPayment(props.item)"
           >
-            <v-icon color="white">fas fa-check</v-icon>
+            <v-icon small color="white">fas fa-check</v-icon>
           </v-btn>
-          <v-btn fab small color="red" @click="remove(props.index)">
-            <v-icon color="white">fas fa-times</v-icon>
+          <v-btn icon small color="red" @click="remove(props.index)">
+            <v-icon small color="white">fas fa-times</v-icon>
           </v-btn>
         </div>
       </td>
@@ -47,13 +46,19 @@ export default Vue.extend({
     },
     headers() {
       return [
-        { text: "名前", value: "name", width: "35%" },
-        { text: "金額", value: "amount", width: "15%", align: "right" },
-        { text: "備考", value: "remarks", width: "30%" },
+        { text: "名前", value: "name", width: "28%" },
         {
-          text: "操作",
+          text: "予定金額",
+          value: "plannedAmount",
+          width: "14%",
+          align: "right"
+        },
+        { text: "支払金額", value: "amount", width: "14%", align: "right" },
+        { text: "備考", value: "remarks", width: "39%" },
+        {
+          text: "支払済 / 削除",
           value: "actions",
-          width: "20%",
+          width: "5%",
           align: "center",
           sortable: false
         }
@@ -61,6 +66,12 @@ export default Vue.extend({
     }
   },
   methods: {
+    getAmount(value: number | null) {
+      if (typeof value === "undefined" || value === null) {
+        return "";
+      }
+      return Number(value).toLocaleString();
+    },
     getColor(member: Member) {
       return member.isPayment ? "green" : "#ccc";
     },
@@ -73,6 +84,14 @@ export default Vue.extend({
   }
 });
 </script>
+
+<style lang="scss">
+.members {
+  .v-datatable {
+    min-width: 650px;
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 .members {

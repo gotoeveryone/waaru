@@ -1,47 +1,76 @@
 <template>
   <v-container>
     <v-layout column>
-      <v-form v-model="valid">
+      <v-form v-model="valid" ref="form">
         <v-flex md12>
           <bread-crumbs :items="items" />
         </v-flex>
         <v-layout row wrap mb-3>
-          <template v-if="eventId">
-            <v-flex xs10 md11>
-              <v-text-field
-                v-model="eventUrl"
-                ref="url"
-                label="URL"
-                readonly
-                @click="selectUrl"
-              />
-            </v-flex>
-            <v-flex xs2 md1 text-xs-center>
-              <v-btn fab small class="mr-0" color="blue" @click="copy">
-                <v-icon color="white">fas fa-clipboard</v-icon>
-              </v-btn>
-            </v-flex>
-          </template>
-          <v-flex xs10 md11>
-            <v-text-field
-              v-model="eventName"
-              :rules="nameRules"
-              :counter="30"
-              label="イベント名"
-              required
-            />
-          </v-flex>
-          <v-flex xs2 md1 text-xs-center>
+          <v-flex md12 xs12 text-xs-right>
+            <v-btn v-if="isEdit" normal class="mr-0" color="blue" @click="copy">
+              <v-icon color="white" left>fas fa-clipboard</v-icon>
+              <span class="white--text">Copy URL</span>
+            </v-btn>
             <v-btn
-              fab
-              small
+              normal
               class="mr-0"
               color="orange"
               @click="save"
               :disabled="!valid"
             >
-              <v-icon color="white">fas fa-save</v-icon>
+              <v-icon color="white" left>fas fa-save</v-icon>
+              <span class="white--text">Save</span>
             </v-btn>
+          </v-flex>
+          <v-flex xs12 v-if="isEdit" class="pl-1 pr-1">
+            <v-text-field
+              v-model="link"
+              ref="url"
+              label="URL"
+              readonly
+              @click="selectUrl"
+            />
+          </v-flex>
+          <v-flex xs12 md6 class="pl-1 pr-1">
+            <v-text-field
+              v-model="form.name"
+              :rules="rules.name"
+              :counter="30"
+              label="イベント名"
+              required
+            />
+          </v-flex>
+          <v-flex xs6 md3 class="pl-1 pr-1">
+            <v-dialog
+              ref="dialog"
+              v-model="showDatePicker"
+              :return-value.sync="form.date"
+              persistent
+              lazy
+              full-width
+              width="290px"
+            >
+              <template v-slot:activator="{ on }">
+                <v-text-field
+                  v-model="form.date"
+                  label="日付"
+                  v-on="on"
+                  clearable
+                />
+              </template>
+              <v-date-picker
+                v-model="form.date"
+                @input="$refs.dialog.save(form.date)"
+              />
+            </v-dialog>
+          </v-flex>
+          <v-flex xs6 md3 class="pl-1 pr-1">
+            <v-text-field
+              v-model="form.summary"
+              :rules="rules.summary"
+              label="合計金額"
+              suffix="円"
+            />
           </v-flex>
         </v-layout>
         <members-table :members="members" @remove-item="removeMember" />
@@ -93,19 +122,33 @@ export default Vue.extend({
     return {
       valid: false,
       eventId: "",
-      eventName: "",
-      nameRules: [
-        (v: string) => !!v || "必須入力です",
-        (v: string) => v.length <= 30 || "30文字以下で入力してください"
-      ],
+      form: {
+        name: "",
+        date: "",
+        summary: "" as string | number
+      },
+      rules: {
+        name: [
+          (v: string) => !!v || "必須入力です",
+          (v: string) => v.length <= 30 || "30文字以下で入力してください"
+        ],
+        summary: [
+          (v: string) =>
+            (!!v && Number.isFinite(Number(v))) || "数値で入力してください"
+        ]
+      },
       members: [] as Member[],
       snackbar: false,
       timeout: 6000,
       message: "",
-      firestore: null
+      firestore: null,
+      showDatePicker: false
     };
   },
   computed: {
+    isEdit(): boolean {
+      return this.eventId !== "";
+    },
     items(): BreadCrumb[] {
       return [
         {
@@ -122,7 +165,7 @@ export default Vue.extend({
     title(): string {
       return `イベント${this.eventId ? "編集" : "追加"}`;
     },
-    eventUrl(): string {
+    link(): string {
       return `${location.origin}/events/${this.eventId}`;
     }
   },
@@ -139,8 +182,12 @@ export default Vue.extend({
           if (!data) {
             return this.$router.replace({ name: "not-found" });
           }
-          this.eventName = data.name;
-          this.members = data.members;
+          const { name, date, summary, members } = data;
+          this.form.name = name;
+          this.form.date = date;
+          this.form.summary =
+            summary !== undefined && summary !== null ? summary.toString() : "";
+          this.members = members;
         });
     }
   },
@@ -159,26 +206,29 @@ export default Vue.extend({
       document.execCommand("copy");
       this.openSnackbar("URLをコピーしました");
     },
+    getForm() {
+      const { name, date, summary } = this.form;
+      return {
+        name,
+        date,
+        summary: summary ? Number(summary) : null,
+        members: this.members
+      };
+    },
     save() {
       if (this.eventId) {
         return firebase
           .firestore()
           .collection("events")
           .doc(this.eventId)
-          .update({
-            name: this.eventName,
-            members: this.members
-          })
+          .update(this.getForm())
           .then(() => this.openSnackbar("更新しました"));
       }
 
       return firebase
         .firestore()
         .collection("events")
-        .add({
-          name: this.eventName,
-          members: this.members
-        })
+        .add(this.getForm())
         .then(referense => {
           this.eventId = referense.id;
           this.openSnackbar("登録しました");
@@ -194,6 +244,9 @@ export default Vue.extend({
     },
     closeSnackbar() {
       this.snackbar = false;
+    },
+    closeDatePicker() {
+      this.showDatePicker = false;
     }
   }
 });

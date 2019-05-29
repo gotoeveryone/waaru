@@ -5,7 +5,7 @@
         <v-flex xs12 md4>
           <v-text-field
             v-model="name"
-            :rules="nameRules"
+            :rules="rules.name"
             :counter="10"
             label="名前"
             required
@@ -13,11 +13,22 @@
         </v-flex>
         <v-flex xs12 md3>
           <v-text-field
-            v-model="amount"
-            :rules="amountRules"
-            label="金額"
+            v-model="plannedAmount"
+            :rules="rules.amount"
+            label="予定金額"
             required
             xs3
+            suffix="円"
+          />
+        </v-flex>
+        <v-flex xs12 md3>
+          <v-text-field
+            v-model="amount"
+            :rules="rules.amount"
+            label="支払金額"
+            required
+            xs3
+            suffix="円"
           />
         </v-flex>
         <v-flex xs12 md4>
@@ -39,16 +50,19 @@ export default Vue.extend({
   data() {
     return {
       valid: false,
-      nameRules: [
-        (v: string) => !!v || "必須入力です",
-        (v: string) => (v && v.length <= 10) || "10文字以下で入力してください"
-      ],
-      amountRules: [
-        (v: string) => !!v || "必須入力です",
-        (v: string) =>
-          (v && Number.isFinite(Number(v))) || "数値で入力してください"
-      ],
+      rules: {
+        name: [
+          (v: string) => !!v || "必須入力です",
+          (v: string) => (v && v.length <= 10) || "10文字以下で入力してください"
+        ],
+        amount: [
+          (v: string) => !!v || "必須入力です",
+          (v: string) =>
+            (v && Number.isFinite(Number(v))) || "数値で入力してください"
+        ]
+      },
       name: "",
+      plannedAmount: null,
       amount: null,
       remarks: ""
     };
@@ -60,6 +74,7 @@ export default Vue.extend({
     addMember() {
       this.$emit("add-member", {
         name: this.name,
+        plannedAmount: Number(this.plannedAmount),
         amount: Number(this.amount),
         remarks: this.remarks || "",
         isPayment: false
