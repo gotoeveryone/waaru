@@ -1,5 +1,7 @@
 # waaru
 
+![Deploy Status](https://github.com/gotoeveryone/waaru/workflows/Deploy/badge.svg)
+
 ## Requirements
 
 - Node.js
