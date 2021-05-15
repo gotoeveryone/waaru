@@ -3,42 +3,41 @@
 ## Requirements
 
 - Node.js
-- Yarn
 - Firebase CLI
 
 ## Setup
 
 ```console
-$ yarn install
+$ npm install
 ```
 
 ### Run
 
 ```console
-$ yarn run serve
+$ npm run serve
 ```
 
 ### Deploy
 
 ```console
-$ yarn run build
+$ npm run build
 $ firebase deploy
 ```
 
 ### Run your tests
 
 ```console
-$ yarn run test
+$ npm run test
 ```
 
 ### Lints and fixes files
 
 ```console
-$ yarn run lint
+$ npm run lint
 ```
 
 ### Run your unit tests
 
 ```console
-$ yarn run test:unit
+$ npm run test:unit
 ```
