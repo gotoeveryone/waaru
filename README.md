@@ -4,7 +4,7 @@
 
 ## Requirements
 
-- Node.js
+- Node.js 16.x
 - Firebase CLI
 
 ## Setup
@@ -16,6 +16,7 @@ $ npm install
 ### Run
 
 ```console
+$ cp .env.example .env
 $ npm run serve
 ```
 
