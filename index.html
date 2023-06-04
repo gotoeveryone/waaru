@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta name="theme-color" content="#f49d41" />
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
+    <link rel="icon" href="/favicon.ico" />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons"
       rel="stylesheet"
@@ -20,6 +20,7 @@
       async
       src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
     ></script>
+    <script type="module" src="/src/main.ts"></script>
     <title>Waaru</title>
   </head>
   <body>
@@ -30,20 +31,17 @@
       >
     </noscript>
     <div id="app"></div>
-    <% if (process.env.NODE_ENV === "production") { %>
-    <div class="ad-html" style="display: none">
+    <div vite-if="import.meta.env.PROD" class="ad-html" style="display: none">
       <!-- 320 x 100 -->
       <ins
         class="adsbygoogle"
         style="display:inline-block;width:320px;height:100px"
-        data-ad-client="<%= VUE_APP_AD_CLIENT %>"
-        data-ad-slot="<%= VUE_APP_AD_SLOT %>"
+        data-ad-client="<%= import.meta.env.VITE_APP_AD_CLIENT %>"
+        data-ad-slot="<%= import.meta.env.VITE_APP_AD_SLOT %>"
       ></ins>
     </div>
-    <script>
+    <script vite-if="import.meta.env.PROD">
       (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
-    <% } %>
-    <!-- built files will be auto injected -->
   </body>
 </html>

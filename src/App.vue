@@ -32,7 +32,7 @@ import Vue from "vue";
 export default Vue.extend({
   computed: {
     isProduction() {
-      return process.env.NODE_ENV === "production";
+      return import.meta.env.PROD;
     },
     iconColor() {
       return "rgb(231, 152, 99)";
