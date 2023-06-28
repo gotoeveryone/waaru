@@ -3,7 +3,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import "./analytics";
+import "./gtag";
 import "./vuetify";
 import "vuetify/dist/vuetify.min.css";
 
