@@ -7,9 +7,9 @@ if ((import.meta as any).env.VITE_ANALYTICS_ID) {
     VueGtag,
     {
       config: {
-        id: (import.meta as any).env.VITE_ANALYTICS_ID
-      }
+        id: (import.meta as any).env.VITE_ANALYTICS_ID,
+      },
     },
-    router
+    router,
   );
 }

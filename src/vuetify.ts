@@ -5,8 +5,8 @@ import ja from "vuetify/src/locale/ja";
 Vue.use(Vuetify, {
   lang: {
     locales: {
-      ja
+      ja,
     },
-    current: "ja"
-  }
+    current: "ja",
+  },
 });

@@ -61,7 +61,7 @@ import { BreadCrumb } from "@/types";
 
 export default Vue.extend({
   components: {
-    BreadCrumbs
+    BreadCrumbs,
   },
   mixins: [metaUsable],
   computed: {
@@ -70,18 +70,18 @@ export default Vue.extend({
         {
           text: "ホーム",
           disabled: false,
-          to: "/"
+          to: "/",
         },
         {
           text: this.title,
-          disabled: true
-        }
+          disabled: true,
+        },
       ];
     },
     title() {
       return "Waaru (ワール) とは";
-    }
-  }
+    },
+  },
 });
 </script>
 

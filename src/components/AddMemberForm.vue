@@ -53,18 +53,19 @@ export default Vue.extend({
       rules: {
         name: [
           (v: string) => !!v || "必須入力です",
-          (v: string) => (v && v.length <= 10) || "10文字以下で入力してください"
+          (v: string) =>
+            (v && v.length <= 10) || "10文字以下で入力してください",
         ],
         amount: [
           (v: string) => !!v || "必須入力です",
           (v: string) =>
-            (v && Number.isFinite(Number(v))) || "数値で入力してください"
-        ]
+            (v && Number.isFinite(Number(v))) || "数値で入力してください",
+        ],
       },
       name: "",
       plannedAmount: null,
       amount: null,
-      remarks: ""
+      remarks: "",
     };
   },
   methods: {
@@ -77,10 +78,10 @@ export default Vue.extend({
         plannedAmount: Number(this.plannedAmount),
         amount: Number(this.amount),
         remarks: this.remarks || "",
-        isPayment: false
+        isPayment: false,
       });
       this.clearValues();
-    }
-  }
+    },
+  },
 });
 </script>

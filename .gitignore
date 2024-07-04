@@ -20,6 +20,9 @@ yarn-error.log*
 *.sln
 *.sw?
 
+# Log
+*.log
+
 .env
 
 # asdf

@@ -16,12 +16,12 @@ const config = {
   databaseURL: (import.meta as any).env.VITE_FIREBASE_DATABASE_URL,
   projectId: (import.meta as any).env.VITE_FIREBASE_PROJECT_ID,
   storageBucket: (import.meta as any).env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: (import.meta as any).env.VITE_FIREBASE_MESSAGING_SENDER_ID
+  messagingSenderId: (import.meta as any).env.VITE_FIREBASE_MESSAGING_SENDER_ID,
 };
 firebase.initializeApp(config);
 
 new Vue({
   router,
   store,
-  render: (h: Function) => h(App)
+  render: (h: Function) => h(App),
 }).$mount("#app");

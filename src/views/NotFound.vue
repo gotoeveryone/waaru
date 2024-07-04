@@ -12,6 +12,6 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "not-found"
+  name: "not-found",
 });
 </script>
