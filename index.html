@@ -21,16 +21,6 @@
   </noscript>
   <div id="app"></div>
   <script type="module" src="src/main.ts"></script>
-  <% if (env.PROD) { %>
-    <div class="ad-html" style="display: none">
-      <!-- 320 x 100 -->
-      <ins class="adsbygoogle" style="display:inline-block;width:320px;height:100px"
-        data-ad-client="<%= env.VITE_AD_CLIENT %>" data-ad-slot="<%= env.VITE_AD_SLOT %>"></ins>
-    </div>
-    <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-    <% } %>
 </body>
 
 </html>

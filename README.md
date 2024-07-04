@@ -17,7 +17,7 @@ $ npm install
 
 ```console
 $ cp .env.example .env
-$ npm run serve
+$ npm run dev
 ```
 
 ### Deploy
@@ -33,14 +33,14 @@ $ firebase deploy
 $ npm run test
 ```
 
-### Lints and fixes files
+### Run Lints
 
 ```console
 $ npm run lint
 ```
 
-### Run your unit tests
+### Run Formats
 
 ```console
-$ npm run test:unit
+$ npm run format
 ```
