@@ -14,27 +14,27 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
     },
     {
       path: "/events/new",
       name: "add-event",
-      component: EventDetail
+      component: EventDetail,
     },
     {
       path: "/events/:id",
       name: "edit-event",
-      component: EventDetail
+      component: EventDetail,
     },
     {
       path: "/about",
       name: "about",
-      component: About
+      component: About,
     },
     {
       path: "*",
       name: "not-found",
-      component: NotFound
-    }
-  ]
+      component: NotFound,
+    },
+  ],
 });

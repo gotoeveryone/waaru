@@ -36,20 +36,20 @@ export default Vue.extend({
     },
     iconColor() {
       return "rgb(231, 152, 99)";
-    }
+    },
   },
   mounted() {
     if (this.isProduction) {
-      (this.$refs.ad as HTMLDivElement).innerHTML = (document.querySelector(
-        ".ad-html"
-      ) as HTMLDivElement).innerHTML;
+      (this.$refs.ad as HTMLDivElement).innerHTML = (
+        document.querySelector(".ad-html") as HTMLDivElement
+      ).innerHTML;
     }
   },
   methods: {
     isHome() {
       return this.$router.currentRoute.name === "home";
-    }
-  }
+    },
+  },
 });
 </script>
 

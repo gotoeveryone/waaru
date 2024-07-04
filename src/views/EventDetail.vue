@@ -115,7 +115,7 @@ export default Vue.extend({
   components: {
     AddMemberForm,
     BreadCrumbs,
-    MembersTable
+    MembersTable,
   },
   mixins: [metaUsable],
   data() {
@@ -125,24 +125,24 @@ export default Vue.extend({
       form: {
         name: "",
         date: "",
-        summary: "" as string | number
+        summary: "" as string | number,
       },
       rules: {
         name: [
           (v: string) => !!v || "必須入力です",
-          (v: string) => v.length <= 30 || "30文字以下で入力してください"
+          (v: string) => v.length <= 30 || "30文字以下で入力してください",
         ],
         summary: [
           (v: string) =>
-            (!!v && Number.isFinite(Number(v))) || "数値で入力してください"
-        ]
+            (!!v && Number.isFinite(Number(v))) || "数値で入力してください",
+        ],
       },
       members: [] as Member[],
       snackbar: false,
       timeout: 6000,
       message: "",
       firestore: null,
-      showDatePicker: false
+      showDatePicker: false,
     };
   },
   computed: {
@@ -154,12 +154,12 @@ export default Vue.extend({
         {
           text: "ホーム",
           disabled: false,
-          to: "/"
+          to: "/",
         },
         {
           text: this.title,
-          disabled: true
-        }
+          disabled: true,
+        },
       ];
     },
     title(): string {
@@ -167,7 +167,7 @@ export default Vue.extend({
     },
     link(): string {
       return `${location.origin}/events/${this.eventId}`;
-    }
+    },
   },
   async mounted() {
     if (this.$route.params.id) {
@@ -177,7 +177,7 @@ export default Vue.extend({
         .collection("events")
         .doc(this.eventId)
         .get()
-        .then(doc => {
+        .then((doc) => {
           const data = doc.data() as EventItem;
           if (!data) {
             return this.$router.replace({ name: "not-found" });
@@ -212,7 +212,7 @@ export default Vue.extend({
         name,
         date,
         summary: summary ? Number(summary) : null,
-        members: this.members
+        members: this.members,
       };
     },
     save() {
@@ -229,12 +229,12 @@ export default Vue.extend({
         .firestore()
         .collection("events")
         .add(this.getForm())
-        .then(referense => {
+        .then((referense) => {
           this.eventId = referense.id;
           this.openSnackbar("登録しました");
           this.$router.replace({
             name: "edit-event",
-            params: { id: this.eventId }
+            params: { id: this.eventId },
           });
         });
     },
@@ -247,7 +247,7 @@ export default Vue.extend({
     },
     closeDatePicker() {
       this.showDatePicker = false;
-    }
-  }
+    },
+  },
 });
 </script>

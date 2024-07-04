@@ -13,8 +13,8 @@ export default Vue.extend({
   props: {
     items: {
       type: Array as PropType<BreadCrumb[]>,
-      default: () => []
-    }
-  }
+      default: () => [],
+    },
+  },
 });
 </script>

@@ -37,8 +37,8 @@ export default Vue.extend({
   props: {
     members: {
       type: Array as PropType<Member[]>,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   computed: {
     noDataText() {
@@ -51,7 +51,7 @@ export default Vue.extend({
           text: "予定金額",
           value: "plannedAmount",
           width: "14%",
-          align: "right"
+          align: "right",
         },
         { text: "支払金額", value: "amount", width: "14%", align: "right" },
         { text: "備考", value: "remarks", width: "39%" },
@@ -60,10 +60,10 @@ export default Vue.extend({
           value: "actions",
           width: "5%",
           align: "center",
-          sortable: false
-        }
+          sortable: false,
+        },
       ];
-    }
+    },
   },
   methods: {
     getAmount(value: number | null) {
@@ -80,8 +80,8 @@ export default Vue.extend({
     },
     remove(index: number) {
       this.$emit("remove-item", index);
-    }
-  }
+    },
+  },
 });
 </script>
 
