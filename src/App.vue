@@ -32,7 +32,7 @@ import Vue from "vue";
 export default Vue.extend({
   computed: {
     isProduction() {
-      return process.env.NODE_ENV === "production";
+      return (import.meta as any).env.PROD as boolean;
     },
     iconColor() {
       return "rgb(231, 152, 99)";
@@ -53,7 +53,7 @@ export default Vue.extend({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .app {
   &-title {
     font-size: 30px;
