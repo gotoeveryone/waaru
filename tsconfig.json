@@ -10,12 +10,23 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["webpack-env", "jest"],
+    "types": [
+      "vitest/globals"
+    ],
     "paths": {
-      "@/*": ["src/*"],
-      "vue-analytics": ["src/@types/vue-analytics/index.d.ts"]
+      "@/*": [
+        "src/*"
+      ],
+      "vue-analytics": [
+        "src/@types/vue-analytics/index.d.ts"
+      ]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ]
   },
   "include": [
     "src/**/*.ts",
@@ -24,5 +35,8 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
-  "exclude": ["node_modules", "typings"]
+  "exclude": [
+    "node_modules",
+    "typings"
+  ]
 }
