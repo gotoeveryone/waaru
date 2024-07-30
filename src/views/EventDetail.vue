@@ -1,12 +1,12 @@
 <template>
   <v-container>
-    <v-layout column>
+    <v-row class="ma-0 flex-column">
       <v-form v-model="valid" ref="form">
-        <v-flex md12>
+        <v-col md12>
           <bread-crumbs :items="items" />
-        </v-flex>
-        <v-layout row wrap mb-3>
-          <v-flex md12 xs12 text-xs-right>
+        </v-col>
+        <v-row class="ma-0 flex-wrap mb-3">
+          <v-col class="pa-0 flex-0-1-100 text-right">
             <v-btn v-if="isEdit" normal class="mr-0" color="blue" @click="copy">
               <v-icon color="white" left>fas fa-clipboard</v-icon>
               <span class="white--text">Copy URL</span>
@@ -21,8 +21,8 @@
               <v-icon color="white" left>fas fa-save</v-icon>
               <span class="white--text">Save</span>
             </v-btn>
-          </v-flex>
-          <v-flex xs12 v-if="isEdit" class="pl-1 pr-1">
+          </v-col>
+          <v-col class="pa-0 flex-0-1-100 px-1" v-if="isEdit">
             <v-text-field
               v-model="link"
               ref="url"
@@ -30,8 +30,8 @@
               readonly
               @click="selectUrl"
             />
-          </v-flex>
-          <v-flex xs12 md6 class="pl-1 pr-1">
+          </v-col>
+          <v-col class="pa-0 flex-0-1-100">
             <v-text-field
               v-model="form.name"
               :rules="rules.name"
@@ -39,8 +39,8 @@
               label="イベント名"
               required
             />
-          </v-flex>
-          <v-flex xs6 md3 class="pl-1 pr-1">
+          </v-col>
+          <v-col class="pa-0 flex-0-1-50">
             <v-dialog
               ref="dialog"
               v-model="showDatePicker"
@@ -60,32 +60,34 @@
               </template>
               <v-date-picker
                 v-model="form.date"
-                @input="$refs.dialog.save(form.date)"
+                @input="onChangeDate(form.date)"
               />
             </v-dialog>
-          </v-flex>
-          <v-flex xs6 md3 class="pl-1 pr-1">
+          </v-col>
+          <v-col class="pa-0 flex-0-1-50">
             <v-text-field
               v-model="form.summary"
               :rules="rules.summary"
               label="合計金額"
               suffix="円"
             />
-          </v-flex>
-        </v-layout>
+          </v-col>
+        </v-row>
         <members-table :members="members" @remove-item="removeMember" />
       </v-form>
-      <v-expansion-panel>
-        <v-expansion-panel-content>
-          <template v-slot:header>
-            <v-flex md12>
-              <v-icon small color="blue" class="mr-2">fas fa-user</v-icon>
-              メンバー追加
-            </v-flex>
-          </template>
-          <add-member-form @add-member="addMember" />
-        </v-expansion-panel-content>
-      </v-expansion-panel>
+      <v-expansion-panels>
+        <v-expansion-panel>
+          <v-expansion-panel-title :hide-actions="false">
+            <v-icon size="small" color="blue" class="mr-2">fas fa-user</v-icon>
+            メンバー追加
+          </v-expansion-panel-title>
+          <v-expansion-panel-text>
+            <template v-slot:default>
+              <add-member-form @add-member="addMember" />
+            </template>
+          </v-expansion-panel-text>
+        </v-expansion-panel>
+      </v-expansion-panels>
       <v-snackbar
         v-model="snackbar"
         :top="true"
@@ -97,21 +99,22 @@
           Close
         </v-btn>
       </v-snackbar>
-    </v-layout>
+    </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
 import firebase from "firebase/app";
 import "firebase/firestore";
-import Vue from "vue";
+import { defineComponent } from "vue";
+import { GlobalComponents } from "vue";
 import AddMemberForm from "@/components/AddMemberForm.vue";
 import BreadCrumbs from "@/components/TheBreadCrumbs.vue";
 import MembersTable from "@/components/MembersTable.vue";
 import metaUsable from "@/mixins/meta-usable";
-import { EventItem, Member, BreadCrumb } from "@/types";
+import type { EventItem, Member, BreadCrumb } from "@/types";
 
-export default Vue.extend({
+export default defineComponent({
   components: {
     AddMemberForm,
     BreadCrumbs,
@@ -152,12 +155,12 @@ export default Vue.extend({
     items(): BreadCrumb[] {
       return [
         {
-          text: "ホーム",
+          title: "ホーム",
           disabled: false,
           to: "/",
         },
         {
-          text: this.title,
+          title: this.title,
           disabled: true,
         },
       ];
@@ -171,7 +174,7 @@ export default Vue.extend({
   },
   async mounted() {
     if (this.$route.params.id) {
-      this.eventId = this.$route.params.id;
+      this.eventId = this.$route.params.id as string;
       await firebase
         .firestore()
         .collection("events")
@@ -214,6 +217,9 @@ export default Vue.extend({
         summary: summary ? Number(summary) : null,
         members: this.members,
       };
+    },
+    onChangeDate(date: string) {
+      (this.$refs.dialog as GlobalComponents["VDialog"]).save(date)
     },
     save() {
       if (this.eventId) {

@@ -15,7 +15,7 @@ export interface Member {
 }
 
 export interface BreadCrumb {
-  text: string;
+  title: string;
   disabled: boolean;
   href?: string;
   to?: string;

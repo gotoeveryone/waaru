@@ -6,7 +6,7 @@
     :hide-actions="true"
     class="members"
   >
-    <template v-slot:items="props">
+    <template v-slot:item="props">
       <td class="text-xs-left" v-text="props.item.name" />
       <td class="text-xs-right" v-text="getAmount(props.item.plannedAmount)" />
       <td class="text-xs-right" v-text="getAmount(props.item.amount)" />
@@ -15,14 +15,14 @@
         <div class="members-row_actions">
           <v-btn
             icon
-            small
+            class="small"
             :color="getColor(props.item)"
             @click="switchPayment(props.item)"
           >
-            <v-icon small color="white">fas fa-check</v-icon>
+            <v-icon class="small" color="white">fas fa-check</v-icon>
           </v-btn>
           <v-btn icon small color="red" @click="remove(props.index)">
-            <v-icon small color="white">fas fa-times</v-icon>
+            <v-icon class="small" color="white">fas fa-times</v-icon>
           </v-btn>
         </div>
       </td>
@@ -31,9 +31,11 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import { Member } from "@/types";
-export default Vue.extend({
+import { defineComponent } from "vue";
+import type { PropType } from "vue";
+import type { Member } from "@/types";
+
+export default defineComponent({
   props: {
     members: {
       type: Array as PropType<Member[]>,
@@ -46,20 +48,20 @@ export default Vue.extend({
     },
     headers() {
       return [
-        { text: "名前", value: "name", width: "28%" },
+        { title: "名前", value: "name", /* width: "28%" */ },
         {
-          text: "予定金額",
+          title: "予定金額",
           value: "plannedAmount",
-          width: "14%",
-          align: "right",
+          // width: "14%",
+          // align: "right",
         },
-        { text: "支払金額", value: "amount", width: "14%", align: "right" },
-        { text: "備考", value: "remarks", width: "39%" },
+        { title: "支払金額", value: "amount", /* width: "14%", align: "right" */ },
+        { title: "備考", value: "remarks", /* width: "39%" */ },
         {
-          text: "支払済 / 削除",
+          title: "支払済 / 削除",
           value: "actions",
-          width: "5%",
-          align: "center",
+          // width: "5%",
+          // align: "center",
           sortable: false,
         },
       ];
