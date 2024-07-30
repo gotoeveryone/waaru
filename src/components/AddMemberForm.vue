@@ -1,8 +1,8 @@
 <template>
   <v-form v-model="valid" xs12 ref="form">
     <v-container>
-      <v-layout row wrap align-center justify-space-around>
-        <v-flex xs12 md4>
+      <v-row class="ma-0 flex-wrap align-center justify-space-around">
+        <v-col xs12 md4>
           <v-text-field
             v-model="name"
             :rules="rules.name"
@@ -10,8 +10,8 @@
             label="名前"
             required
           />
-        </v-flex>
-        <v-flex xs12 md3>
+        </v-col>
+        <v-col xs12 md3>
           <v-text-field
             v-model="plannedAmount"
             :rules="rules.amount"
@@ -20,8 +20,8 @@
             xs3
             suffix="円"
           />
-        </v-flex>
-        <v-flex xs12 md3>
+        </v-col>
+        <v-col xs12 md3>
           <v-text-field
             v-model="amount"
             :rules="rules.amount"
@@ -30,23 +30,24 @@
             xs3
             suffix="円"
           />
-        </v-flex>
-        <v-flex xs12 md4>
+        </v-col>
+        <v-col xs12 md4>
           <v-text-field v-model="remarks" label="備考" />
-        </v-flex>
-        <v-flex xs12 md1 text-xs-center>
+        </v-col>
+        <v-col xs12 md1 text-xs-center>
           <v-btn fab small color="blue" @click="addMember" :disabled="!valid">
             <v-icon color="white">fas fa-plus</v-icon>
           </v-btn>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-container>
   </v-form>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-export default Vue.extend({
+import { defineComponent } from "vue";
+
+export default defineComponent({
   data() {
     return {
       valid: false,

@@ -1,12 +1,8 @@
-import Vue from "vue";
-import Vuetify from "vuetify";
-import ja from "vuetify/src/locale/ja";
+import { createVuetify } from "vuetify";
+import "vuetify/styles";
 
-Vue.use(Vuetify, {
-  lang: {
-    locales: {
-      ja,
-    },
-    current: "ja",
+export default createVuetify({
+  locale: {
+    locale: "ja",
   },
 });
