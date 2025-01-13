@@ -10,7 +10,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "core-js": "^3.39.0",
+    "core-js": "^3.40.0",
     "firebase": "^8.10.1",
     "vue": "2.7.16",
     "vue-gtag": "^1.16.1",
