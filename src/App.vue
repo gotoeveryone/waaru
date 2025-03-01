@@ -31,19 +31,9 @@ import Vue from "vue";
 
 export default Vue.extend({
   computed: {
-    isProduction() {
-      return (import.meta as any).env.PROD as boolean;
-    },
     iconColor() {
       return "rgb(231, 152, 99)";
     },
-  },
-  mounted() {
-    if (this.isProduction) {
-      (this.$refs.ad as HTMLDivElement).innerHTML = (
-        document.querySelector(".ad-html") as HTMLDivElement
-      ).innerHTML;
-    }
   },
   methods: {
     isHome() {
