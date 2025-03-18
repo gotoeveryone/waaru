@@ -7,9 +7,11 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import { BreadCrumb } from "@/types";
-export default Vue.extend({
+import { defineComponent } from "vue";
+import type { PropType } from "vue";
+import type { BreadCrumb } from "@/types";
+
+export default defineComponent({
   props: {
     items: {
       type: Array as PropType<BreadCrumb[]>,

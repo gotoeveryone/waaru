@@ -4,7 +4,7 @@
 
 ## Requirements
 
-- Node.js 18.x
+- Node.js 20.x
 - Firebase CLI
 
 ## Setup

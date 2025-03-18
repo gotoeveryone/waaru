@@ -1,8 +1,8 @@
 <template>
-  <v-app id="app" class="app">
-    <v-layout column align-center justify-content-start>
-      <h2 class="app-title mt-3 mb-2">Waaru (ワール)</h2>
-      <div class="app-nav mt-1 mb-1 d-flex" v-if="!isHome()">
+  <v-app class="app">
+    <v-row class="ma-0 flex-column align-center justify-start">
+      <h2 class="app-title mt-4 mb-2">Waaru (ワール)</h2>
+      <div class="app-nav mt-1 mb-1 d-flex" v-if="!isHome">
         <router-link to="/" class="app-nav_link ml-1 mr-1">
           <v-icon :color="iconColor">fas fa-home</v-icon>
         </router-link>
@@ -21,23 +21,20 @@
       <div class="app-copyright mt-2 mb-2">
         &copy; K2SS All rights reserved.
       </div>
-      <div ref="ad" />
-    </v-layout>
+    </v-row>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { defineComponent } from "vue";
 
-export default Vue.extend({
+export default defineComponent({
   computed: {
     iconColor() {
       return "rgb(231, 152, 99)";
     },
-  },
-  methods: {
     isHome() {
-      return this.$router.currentRoute.name === "home";
+      return this.$router.currentRoute.value.name === "home";
     },
   },
 });
@@ -45,6 +42,8 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .app {
+  font-size: 14px;
+
   &-title {
     font-size: 30px;
   }

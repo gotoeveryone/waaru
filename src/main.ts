@@ -1,13 +1,10 @@
 import firebase from "firebase/app";
-import Vue from "vue";
-import App from "./App.vue";
-import router from "./router";
-import store from "./store";
-import "./gtag";
-import "./vuetify";
-import "vuetify/dist/vuetify.min.css";
-
-Vue.config.productionTip = false;
+import { createApp } from "vue";
+import VueGtag from "vue-gtag";
+import App from "@/App.vue";
+import router from "@/router";
+import store from "@/store";
+import vuetify from "@/vuetify";
 
 // Firebase の設定
 const config = {
@@ -20,8 +17,18 @@ const config = {
 };
 firebase.initializeApp(config);
 
-new Vue({
-  router,
-  store,
-  render: (h: Function) => h(App),
-}).$mount("#app");
+const app = createApp(App).use(router).use(store).use(vuetify);
+
+if ((import.meta as any).env.VITE_ANALYTICS_ID) {
+  app.use(
+    VueGtag,
+    {
+      config: {
+        id: (import.meta as any).env.VITE_ANALYTICS_ID,
+      },
+    },
+    router,
+  );
+}
+
+app.mount("#app");

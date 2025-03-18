@@ -1,13 +1,13 @@
 <template>
-  <v-container>
-    <v-layout column>
-      <v-flex md12>
+  <v-container class="flex-fill pa-6">
+    <v-row class="ma-0 flex-column">
+      <v-col class="pa-0 flex-0-1-100">
         <bread-crumbs :items="items" />
-      </v-flex>
-      <v-flex md12>
+      </v-col>
+      <v-col class="pa-0 flex-0-1-100">
         <h2 class="mt-1 mb-2" v-text="title"></h2>
-      </v-flex>
-      <v-flex md12>
+      </v-col>
+      <v-col class="pa-0 flex-0-1-100">
         <p>
           飲み会やパーティなどのイベントがあったとき、割り勘した結果を保存しておくことができるサービスです。
         </p>
@@ -22,13 +22,13 @@
         <h3>Waaru でできること</h3>
         <ul class="about_cando">
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon small color="orange" class="about_cando_icon mr-2"
+            <v-icon size="small" color="orange" class="about_cando_icon mr-2"
               >fas fa-sticky-note</v-icon
             >
             <span class="about_cando_text">イベント情報の登録・更新</span>
           </li>
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon small color="blue" class="about_cando_icon mr-2"
+            <v-icon size="small" color="blue" class="about_cando_icon mr-2"
               >fas fa-user</v-icon
             >
             <span class="about_cando_text"
@@ -36,30 +36,30 @@
             >
           </li>
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon small color="gray" class="about_cando_icon mr-2"
+            <v-icon size="small" color="grey" class="about_cando_icon mr-2"
               >fas fa-clipboard</v-icon
             >
             <span class="about_cando_text">URLをボタン1つでコピーして共有</span>
           </li>
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon small color="green" class="about_cando_icon mr-2"
+            <v-icon size="small" color="green" class="about_cando_icon mr-2"
               >fas fa-check</v-icon
             >
             <span class="about_cando_text">支払済みかをマーク</span>
           </li>
         </ul>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { defineComponent } from "vue";
 import BreadCrumbs from "@/components/TheBreadCrumbs.vue";
 import metaUsable from "@/mixins/meta-usable";
-import { BreadCrumb } from "@/types";
+import type { BreadCrumb } from "@/types";
 
-export default Vue.extend({
+export default defineComponent({
   components: {
     BreadCrumbs,
   },
@@ -68,12 +68,12 @@ export default Vue.extend({
     items(): BreadCrumb[] {
       return [
         {
-          text: "ホーム",
+          title: "ホーム",
           disabled: false,
           to: "/",
         },
         {
-          text: this.title,
+          title: this.title,
           disabled: true,
         },
       ];
