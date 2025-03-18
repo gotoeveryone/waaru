@@ -16,9 +16,6 @@
     "paths": {
       "@/*": [
         "src/*"
-      ],
-      "vue-analytics": [
-        "src/@types/vue-analytics/index.d.ts"
       ]
     },
     "lib": [

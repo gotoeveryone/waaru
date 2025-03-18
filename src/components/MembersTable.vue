@@ -4,25 +4,35 @@
     :items="members"
     :no-data-text="noDataText"
     :hide-actions="true"
+    :hide-default-footer="true"
     class="members"
   >
-    <template v-slot:items="props">
-      <td class="text-xs-left" v-text="props.item.name" />
-      <td class="text-xs-right" v-text="getAmount(props.item.plannedAmount)" />
-      <td class="text-xs-right" v-text="getAmount(props.item.amount)" />
-      <td class="text-xs-left" v-text="props.item.remarks" />
-      <td class="text-xs-center pt-1 pb-1">
+    <template v-slot:item="props">
+      <td class="text-left" v-text="props.item.name" />
+      <td class="text-right" v-text="getAmount(props.item.plannedAmount)" />
+      <td class="text-right" v-text="getAmount(props.item.amount)" />
+      <td class="text-left" v-text="props.item.remarks" />
+      <td class="text-center pt-1 pb-1">
         <div class="members-row_actions">
           <v-btn
             icon
-            small
+            size="small"
+            density="comfortable"
+            class="mx-2 my-1"
             :color="getColor(props.item)"
             @click="switchPayment(props.item)"
           >
-            <v-icon small color="white">fas fa-check</v-icon>
+            <v-icon size="small" color="white">fas fa-check</v-icon>
           </v-btn>
-          <v-btn icon small color="red" @click="remove(props.index)">
-            <v-icon small color="white">fas fa-times</v-icon>
+          <v-btn
+            icon
+            size="small"
+            density="comfortable"
+            class="mx-2 my-1"
+            color="red"
+            @click="remove(props.index)"
+          >
+            <v-icon size="small" color="white">fas fa-times</v-icon>
           </v-btn>
         </div>
       </td>
@@ -31,9 +41,11 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropType } from "vue";
-import { Member } from "@/types";
-export default Vue.extend({
+import { defineComponent } from "vue";
+import type { PropType } from "vue";
+import type { Member } from "@/types";
+
+export default defineComponent({
   props: {
     members: {
       type: Array as PropType<Member[]>,
@@ -46,20 +58,18 @@ export default Vue.extend({
     },
     headers() {
       return [
-        { text: "名前", value: "name", width: "28%" },
+        { title: "名前", value: "name", width: "28%" },
         {
-          text: "予定金額",
+          title: "予定金額",
           value: "plannedAmount",
           width: "14%",
-          align: "right",
         },
-        { text: "支払金額", value: "amount", width: "14%", align: "right" },
-        { text: "備考", value: "remarks", width: "39%" },
+        { title: "支払金額", value: "amount", width: "14%" },
+        { title: "備考", value: "remarks", width: "auto" },
         {
-          text: "支払済 / 削除",
+          title: "支払済 / 削除",
           value: "actions",
-          width: "5%",
-          align: "center",
+          width: "10%",
           sortable: false,
         },
       ];

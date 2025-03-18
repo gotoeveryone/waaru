@@ -1,17 +1,17 @@
 <template>
-  <div class="mt-5 mb-5">
-    <v-layout row wrap justify-center>
-      <v-flex md12>
+  <div class="mt-12 mb-12">
+    <v-row>
+      <v-col md12>
         ページが見つかりません
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { defineComponent } from "vue";
 
-export default Vue.extend({
+export default defineComponent({
   name: "not-found",
 });
 </script>

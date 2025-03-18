@@ -1,15 +1,11 @@
-import Vue from "vue";
-import Router from "vue-router";
+import { createWebHistory, createRouter } from "vue-router";
 import About from "./views/About.vue";
 import Home from "./views/Home.vue";
 import EventDetail from "./views/EventDetail.vue";
 import NotFound from "./views/NotFound.vue";
 
-Vue.use(Router);
-
-export default new Router({
-  mode: "history",
-  base: (import.meta as any).env.BASE_URL,
+export default createRouter({
+  history: createWebHistory((import.meta as any).env.BASE_URL),
   routes: [
     {
       path: "/",
@@ -32,7 +28,7 @@ export default new Router({
       component: About,
     },
     {
-      path: "*",
+      path: "/:pathMatch(.*)*",
       name: "not-found",
       component: NotFound,
     },

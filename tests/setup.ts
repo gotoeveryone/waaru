@@ -1,8 +1,12 @@
 import { config } from "@vue/test-utils";
 
+const StubComponent = {
+  template: `<div><slot /></div>`
+};
+
 // NOTE: vuetify に関するファイルはスタブ化しておく
-config.stubs["v-layout"] = true;
-config.stubs["v-flex"] = true;
+config.global.stubs["v-row"] = StubComponent;
+config.global.stubs["v-col"] = StubComponent;
 
 beforeEach(() => {
   // テストの度にモックの実装をクリアする
