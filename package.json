@@ -15,8 +15,7 @@
     "vue": "^3.4.34",
     "vue-gtag": "^2.1.2",
     "vue-router": "^4.4.0",
-    "vuetify": "^3.6.13",
-    "vuex": "^4.1.0"
+    "vuetify": "^3.6.13"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",

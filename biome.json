@@ -23,8 +23,7 @@
     {
       "include": [
         "*.ts",
-        "*.tsx",
-        "*.vue"
+        "*.tsx"
       ],
       "linter": {
         "rules": {

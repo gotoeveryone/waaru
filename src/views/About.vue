@@ -1,8 +1,31 @@
+<script lang="ts" setup>
+import { computed, onMounted } from "vue";
+import BreadCrumbs from "@/components/TheBreadCrumbs.vue";
+
+const title = "Waaru (ワール) とは";
+
+onMounted(() => {
+  document.title = `${title} - Waaru`;
+});
+
+const breadCrums = computed(() => [
+  {
+    title: "ホーム",
+    disabled: false,
+    to: "/",
+  },
+  {
+    title,
+    disabled: true,
+  },
+]);
+</script>
+
 <template>
   <v-container class="flex-fill pa-6">
     <v-row class="ma-0 flex-column">
       <v-col class="pa-0 flex-0-1-100">
-        <bread-crumbs :items="items" />
+        <bread-crumbs :items="breadCrums" />
       </v-col>
       <v-col class="pa-0 flex-0-1-100">
         <h2 class="mt-1 mb-2" v-text="title"></h2>
@@ -12,9 +35,7 @@
           飲み会やパーティなどのイベントがあったとき、割り勘した結果を保存しておくことができるサービスです。
         </p>
         <p>
-          <span class="about_emphasis"
-            >ログインが不要（URLを知っていれば共有可能）</span
-          >
+          <span class="about_emphasis">ログインが不要（URLを知っていれば共有可能）</span>
         </p>
         <p>
           なので、メモ代わりに利用できます。
@@ -22,29 +43,19 @@
         <h3>Waaru でできること</h3>
         <ul class="about_cando">
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon size="small" color="orange" class="about_cando_icon mr-2"
-              >fas fa-sticky-note</v-icon
-            >
+            <v-icon size="small" color="orange" class="about_cando_icon mr-2">fas fa-sticky-note</v-icon>
             <span class="about_cando_text">イベント情報の登録・更新</span>
           </li>
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon size="small" color="blue" class="about_cando_icon mr-2"
-              >fas fa-user</v-icon
-            >
-            <span class="about_cando_text"
-              >イベント参加メンバーの登録・更新</span
-            >
+            <v-icon size="small" color="blue" class="about_cando_icon mr-2">fas fa-user</v-icon>
+            <span class="about_cando_text">イベント参加メンバーの登録・更新</span>
           </li>
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon size="small" color="grey" class="about_cando_icon mr-2"
-              >fas fa-clipboard</v-icon
-            >
+            <v-icon size="small" color="grey" class="about_cando_icon mr-2">fas fa-clipboard</v-icon>
             <span class="about_cando_text">URLをボタン1つでコピーして共有</span>
           </li>
           <li class="mb-2 mt-2 d-flex align-center">
-            <v-icon size="small" color="green" class="about_cando_icon mr-2"
-              >fas fa-check</v-icon
-            >
+            <v-icon size="small" color="green" class="about_cando_icon mr-2">fas fa-check</v-icon>
             <span class="about_cando_text">支払済みかをマーク</span>
           </li>
         </ul>
@@ -52,38 +63,6 @@
     </v-row>
   </v-container>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-import BreadCrumbs from "@/components/TheBreadCrumbs.vue";
-import metaUsable from "@/mixins/meta-usable";
-import type { BreadCrumb } from "@/types";
-
-export default defineComponent({
-  components: {
-    BreadCrumbs,
-  },
-  mixins: [metaUsable],
-  computed: {
-    items(): BreadCrumb[] {
-      return [
-        {
-          title: "ホーム",
-          disabled: false,
-          to: "/",
-        },
-        {
-          title: this.title,
-          disabled: true,
-        },
-      ];
-    },
-    title() {
-      return "Waaru (ワール) とは";
-    },
-  },
-});
-</script>
 
 <style lang="scss" scoped>
 .about {
