@@ -1,3 +1,42 @@
+<script lang="ts" setup>
+import { ref } from "vue";
+
+const rules = {
+  name: [
+    (v: string) => !!v || "必須入力です",
+    (v: string) => (v && v.length <= 10) || "10文字以下で入力してください",
+  ],
+  amount: [
+    (v: string) => !!v || "必須入力です",
+    (v: string) =>
+      (v && Number.isFinite(Number(v))) || "数値で入力してください",
+  ],
+};
+
+const form = ref<HTMLFormElement | null>(null);
+const valid = ref(false);
+const name = ref("");
+const plannedAmount = ref(null);
+const amount = ref(null);
+const remarks = ref("");
+
+const emits = defineEmits(["add-member"]);
+
+const clearValues = () => {
+  form.value!.reset();
+};
+const addMember = () => {
+  emits("add-member", {
+    name: name.value,
+    plannedAmount: Number(plannedAmount.value),
+    amount: Number(amount.value),
+    remarks: remarks.value,
+    isPayment: false,
+  });
+  clearValues();
+};
+</script>
+
 <template>
   <v-form v-model="valid" xs12 ref="form">
     <v-container>
@@ -41,46 +80,3 @@
     </v-container>
   </v-form>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  data() {
-    return {
-      valid: false,
-      rules: {
-        name: [
-          (v: string) => !!v || "必須入力です",
-          (v: string) =>
-            (v && v.length <= 10) || "10文字以下で入力してください",
-        ],
-        amount: [
-          (v: string) => !!v || "必須入力です",
-          (v: string) =>
-            (v && Number.isFinite(Number(v))) || "数値で入力してください",
-        ],
-      },
-      name: "",
-      plannedAmount: null,
-      amount: null,
-      remarks: "",
-    };
-  },
-  methods: {
-    clearValues() {
-      (this.$refs.form as HTMLFormElement).reset();
-    },
-    addMember() {
-      this.$emit("add-member", {
-        name: this.name,
-        plannedAmount: Number(this.plannedAmount),
-        amount: Number(this.amount),
-        remarks: this.remarks || "",
-        isPayment: false,
-      });
-      this.clearValues();
-    },
-  },
-});
-</script>

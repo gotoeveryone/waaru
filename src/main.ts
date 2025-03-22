@@ -3,7 +3,6 @@ import { createApp } from "vue";
 import VueGtag from "vue-gtag";
 import App from "@/App.vue";
 import router from "@/router";
-import store from "@/store";
 import vuetify from "@/vuetify";
 
 // Firebase の設定
@@ -17,7 +16,7 @@ const config = {
 };
 firebase.initializeApp(config);
 
-const app = createApp(App).use(router).use(store).use(vuetify);
+const app = createApp(App).use(router).use(vuetify);
 
 if ((import.meta as any).env.VITE_ANALYTICS_ID) {
   app.use(
