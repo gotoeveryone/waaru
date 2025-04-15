@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import { createApp } from "vue";
-import VueGtag from "vue-gtag";
+import { createGtag } from "vue-gtag";
 import App from "@/App.vue";
 import router from "@/router";
 import vuetify from "@/vuetify";
@@ -19,15 +19,11 @@ firebase.initializeApp(config);
 const app = createApp(App).use(router).use(vuetify);
 
 if ((import.meta as any).env.VITE_ANALYTICS_ID) {
-  app.use(
-    VueGtag,
-    {
-      config: {
-        id: (import.meta as any).env.VITE_ANALYTICS_ID,
-      },
-    },
-    router,
-  );
+  const gtag = createGtag({
+    tagId: (import.meta as any).env.VITE_ANALYTICS_ID,
+    pageTracker: { router }
+  });
+  app.use(gtag);
 }
 
 app.mount("#app");
