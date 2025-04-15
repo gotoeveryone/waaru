@@ -21,7 +21,7 @@ const app = createApp(App).use(router).use(vuetify);
 if ((import.meta as any).env.VITE_ANALYTICS_ID) {
   const gtag = createGtag({
     tagId: (import.meta as any).env.VITE_ANALYTICS_ID,
-    pageTracker: { router }
+    pageTracker: { router },
   });
   app.use(gtag);
 }
