@@ -18,7 +18,7 @@
     "vuetify": "^3.6.13"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
+    "@biomejs/biome": "^2.0.5",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.21",
