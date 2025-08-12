@@ -1,6 +1,12 @@
 <script lang="ts" setup>
-import firebase from "firebase/app";
-import "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getFirestore,
+  updateDoc,
+} from "firebase/firestore";
 import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import AddMemberForm from "@/components/AddMemberForm.vue";
@@ -18,6 +24,8 @@ const rules = {
       (!!v && Number.isFinite(Number(v))) || "数値で入力してください",
   ],
 };
+
+const db = getFirestore();
 
 const route = useRoute();
 const router = useRouter();
@@ -44,13 +52,9 @@ onMounted(async () => {
 
   eventId.value = route.params.id as string;
 
-  const doc = await firebase
-    .firestore()
-    .collection("events")
-    .doc(eventId.value)
-    .get();
-
-  const data = doc.data() as EventItem;
+  const data = (
+    await getDoc(doc(db, "events", eventId.value))
+  ).data() as EventItem;
   if (!data) {
     return router.replace({ name: "not-found" });
   }
@@ -117,26 +121,19 @@ const copy = () => {
 };
 const save = () => {
   if (isEdit.value) {
-    return firebase
-      .firestore()
-      .collection("events")
-      .doc(eventId.value)
-      .update(formValue.value)
-      .then(() => openSnackbar("更新しました"));
+    return updateDoc(doc(db, "events", eventId.value), formValue.value).then(
+      () => openSnackbar("更新しました"),
+    );
   }
 
-  return firebase
-    .firestore()
-    .collection("events")
-    .add(formValue.value)
-    .then((referense) => {
-      eventId.value = referense.id;
-      openSnackbar("登録しました");
-      router.replace({
-        name: "edit-event",
-        params: { id: eventId.value },
-      });
+  return addDoc(collection(db, "events"), formValue.value).then((referense) => {
+    eventId.value = referense.id;
+    openSnackbar("登録しました");
+    router.replace({
+      name: "edit-event",
+      params: { id: eventId.value },
     });
+  });
 };
 const openSnackbar = (message: string) => {
   snackbarMessage.value = message;
