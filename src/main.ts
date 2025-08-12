@@ -1,4 +1,4 @@
-import firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { createApp } from "vue";
 import { createGtag } from "vue-gtag";
 import App from "@/App.vue";
@@ -14,7 +14,7 @@ const config = {
   storageBucket: (import.meta as any).env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: (import.meta as any).env.VITE_FIREBASE_MESSAGING_SENDER_ID,
 };
-firebase.initializeApp(config);
+initializeApp(config);
 
 const app = createApp(App).use(router).use(vuetify);
 
