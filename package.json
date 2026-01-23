@@ -32,7 +32,7 @@
     "vitest": "^4.0.15"
   },
   "engines": {
-    "node": ">=20 <21"
+    "node": ">=24 <25"
   },
   "type": "module"
 }
