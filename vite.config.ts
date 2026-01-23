@@ -31,7 +31,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @import '@/assets/styles/normalize.scss';
+          @use '@/assets/styles/normalize.scss';
         `,
       },
     },
