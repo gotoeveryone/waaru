@@ -1,7 +1,7 @@
+/// <reference types="vitest/config" />
 import { resolve } from "path";
 import autoprefixer from "autoprefixer";
 import vue from "@vitejs/plugin-vue";
-/// <reference types="vitest/config" />
 import { defineConfig } from "vite";
 import biome from "vite-plugin-biome";
 import { ViteEjsPlugin } from "vite-plugin-ejs";
